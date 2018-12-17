@@ -14,6 +14,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 //Additionally, you will frequently add one or more of these using statements:
 using MongoDB.Driver.Linq;
+using System.Threading;
 
 namespace MechanicalDesign
 {
@@ -35,8 +36,13 @@ namespace MechanicalDesign
         public Chassis selectedChassis;
         public static Main mainForm;
         public SaveFileDialog printVehicleXml = new SaveFileDialog();
-        private string connectionString;
-        public MongoClient mongoClient;
+        private static string connectionString;
+        public static MongoClient mongoClient;
+        public static IMongoDatabase silcoDB;
+        public  static IMongoCollection<VehWeapon> vehWeapons;
+        public static List<VehWeapon> availWeapList = new List<VehWeapon>();
+        
+        
 
 
 
@@ -44,11 +50,54 @@ namespace MechanicalDesign
         {
             InitializeComponent();
             mainForm = this;
-            connectionString = "mongodb+srv://Cshmnymc:<Killer123$>@silcodb-0xgif.mongodb.net/test?retryWrites=true";
-            mongoClient = new MongoClient(connectionString);
-            var silcoDB = mongoClient.GetDatabase("SilcoStat");
-        }
+            try { xmlVehWeapons(); }
+            catch (Exception error)
+            {
+                connectionString = "mongodb+srv://Cshmnymc:Killer123$@silcodb-0xgif.mongodb.net/test?retryWrites=true";
+                mongoClient = new MongoClient(connectionString);
+                silcoDB = mongoClient.GetDatabase("SilcoStat");
+                vehWeapons = silcoDB.GetCollection<VehWeapon>("VehWeapons");
+                MessageBox.Show("Local Data missing or corupted, attempting data Retrieval");
+                var finish = MainAsync();
+                MessageBox.Show("Loading Weapons");
+                Thread.Sleep(1000);
+                GrabVehWeaponDB();
+            }
+            
 
+        }
+        private void xmlVehWeapons()
+        {
+            XmlSerializer read = new XmlSerializer(typeof(List<VehWeapon>));
+            using (FileStream wepXml = new FileStream(Environment.CurrentDirectory + "\\VehicleWeapons\\" + "Weapons.xml", FileMode.Open, FileAccess.Read))
+            {
+                availWeapList = read.Deserialize(wepXml) as List<VehWeapon>;
+            }
+        }
+        static async Task MainAsync()
+        {
+
+            var collection = silcoDB.GetCollection<BsonDocument>("VehWeapons");
+
+            using (IAsyncCursor<BsonDocument> cursor = await collection.FindAsync(new BsonDocument()))
+            {
+                while (await cursor.MoveNextAsync())
+                {
+                    IEnumerable<BsonDocument> batch = cursor.Current;
+                    availWeapList.Clear();
+                    foreach (BsonDocument x in batch)
+                    {
+
+                        VehWeapon nWeapon = new VehWeapon(ret(x, 1), ret(x, 2), ret(x, 3), ret(x, 4), ret(x, 5), ret(x, 6), ret(x, 7), ret(x, 8),ret(x,9), ret(x, 10), (Int32)x.GetValue(11), (Int32)x.GetValue(12));
+                        availWeapList.Add(nWeapon);
+                        //VehWeapon x = new VehWeapon();
+                       // MessageBox.Show(nWeapon.name + " " + nWeapon.range);
+                    }
+                }
+            }
+            String ret(BsonDocument doc ,int input) { String r = doc.GetValue(input).ToString(); return r; }
+            
+        }
         public void vehicleTypeComBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             templateTypeComBox.Items.Clear();
@@ -439,6 +488,7 @@ namespace MechanicalDesign
             }
 
         }
+
         public double mechCPXTest()
         {
             double mechCPX;
@@ -517,9 +567,66 @@ namespace MechanicalDesign
             else MessageBox.Show("Enter A Name First");
             //
         }
+        private void GrabVehWeaponDB()
+        {
+            XmlSerializer serial = new XmlSerializer(typeof(List<VehWeapon>));
+           
+            using (FileStream NewSave = new FileStream(Environment.CurrentDirectory + "\\VehicleWeapons\\"+"Weapons.xml", FileMode.Create, FileAccess.Write))
+            {
+                serial.Serialize(NewSave, availWeapList);
+            }
+
+        }
+
+        private void vehicleWeaponsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                connectionString = "mongodb+srv://Cshmnymc:Killer123$@silcodb-0xgif.mongodb.net/test?retryWrites=true";
+                mongoClient = new MongoClient(connectionString);
+                silcoDB = mongoClient.GetDatabase("SilcoStat");
+                vehWeapons = silcoDB.GetCollection<VehWeapon>("VehWeapons");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(" Cannot Connect to DB: Using Local Storage");
+            }
+            try
+            {
+                var finish = MainAsync();
+                MessageBox.Show("Loading Weapons");
+                Thread.Sleep(1000);
+                GrabVehWeaponDB();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
+            
+        }
+
+        private void openVehicleViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openView = new SaveFileDialog();
+            openView.Filter = "XML File|*.xml";
+            openView.InitialDirectory = (Environment.CurrentDirectory + "\\VehiclePrints");
+            openView.ShowDialog();
+            if (openView.FileName != "")
+            {
+                
+                using (FileStream openVeh = new FileStream(openView.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    File.Copy(openView.FileName, (Environment.CurrentDirectory + "\\VehViewer"+"\\SelectedView.xml"), true);
+ 
+                }
+            }
+            else MessageBox.Show("No Save File Name");
+            //File.Copy(filePath, newPath, true);
+            System.Diagnostics.Process.Start(Environment.CurrentDirectory + "\\VehViewer\\" + "\\VehicleView.html");
+        }
     }
     [Serializable]
-    public class VehiclePrint
+    public class VehiclePrint 
     {
         ///////////////Variables for Serialization//////////////////
         public string vehicleName;
@@ -528,10 +635,18 @@ namespace MechanicalDesign
         public int maneuver;
         public int move;
         public int bp;
+        public int pilotCPX;
+        public int mechCPX;
+        public int crCost;
+        public string buildQual;
+        public string moveType;
+
+        public List<SerPerk> perkList = new List<SerPerk>();
+        public List<SerFlaw> flawList = new List<SerFlaw>();
         public static int sectionIndex;
         public List<SectionPrint> sectionPrintList = new List<SectionPrint>();
 
-        public VehiclePrint()
+        public VehiclePrint() 
         {
             Vehicle v = Main.mainForm.selectedVehicle;
             ///////////////Variables for Serialization//////////////////
@@ -541,9 +656,24 @@ namespace MechanicalDesign
             maneuver = v.GetFinalMan();
             move = v.GetMove();
             bp = v.bpTotal;
-
+            crCost = v.crCost;
+            pilotCPX = v.pilotCPX;
+            mechCPX = v.mechCPX;
+            buildQual = Main.mainForm.SectionForm.buildQualLbl.Text;
+            moveType = Main.mainForm.selectedMoveType.name;
+            
+           foreach (VehiclePerk s in v.perkList)
+            {
+               
+                if (s.isAdded) perkList.Add(new SerPerk {perkString = s.perkName });
+                
+           }
+            foreach (VehicleFlaw s in v.flawList)
+            {
+                if (s.isAdded) flawList.Add(new SerFlaw { flawString = s.flawName });
+            }
             //////////////Print Sections for Serialization/////////////
-            for(int i = 0; i< v.actualSections; i++)
+            for (int i = 0; i< v.actualSections; i++)
             {
                 sectionIndex = i;
                 if (v.sectionList[i] != null & v.sectionList[i].secCore != null)
@@ -553,14 +683,18 @@ namespace MechanicalDesign
                 }
             }
         }
+        public class SerPerk{ public string perkString;}
+        public class SerFlaw { public string flawString; }
         public class SectionPrint
         {
             public String sectionName;
             public double armor;
             public int shields;
-            public List<string> eSystems = new List<string>();
-            public List<string> mSystems = new List<string>();
-            public List<string> protPerks = new List<string>();
+            public List<SerEsystem> eSystems = new List<SerEsystem>();
+            public List<SerMsystem> mSystems = new List<SerMsystem>();
+            public List<SerProt> protPerks = new List<SerProt>();
+            public List<HardPoint> hPoints = new List<HardPoint>();
+            public List<SerCompart> compList = new List<SerCompart>();
 
             public SectionPrint()
             {
@@ -568,11 +702,41 @@ namespace MechanicalDesign
                 sectionName = s.sectionName;
                 armor = s.secChassis.baseArmor + s.armorAdjust;
                 shields = s.GetShieldTotal();
-                eSystems.AddRange(s.electronicSystems);
-                mSystems.AddRange(s.miscSystems);
-                protPerks.AddRange(s.protPerkList);
-
+                hPoints.AddRange(s.hpList);
+                
+                foreach(string x in s.electronicSystems)
+                {
+                    if (x != null)
+                     eSystems.Add(new SerEsystem { eSysString = x }); 
+                }
+                foreach (string x in s.miscSystems)
+                {
+                    if (x != null)
+                        mSystems.Add(new SerMsystem { mSysString = x });
+                }
+                foreach (string x in s.protPerkList)
+                {
+                    if (x != null)
+                        protPerks.Add(new SerProt { protString = x });
+                }
+                foreach (Compartment x in s.compList)
+                {
+                    if (x.count > 0)
+                    {
+                        if (x.count < 2)
+                            compList.Add(new SerCompart { comp = x.name });
+                        else
+                            compList.Add(new SerCompart { comp = x.name + "(" + x.count + ")" });
+                    }
+   
+                }
             }
         }
+        public class SerEsystem { public string eSysString; }
+        public class SerMsystem { public string mSysString; }
+        public class SerProt { public string protString; }
+        public class SerCompart { public string comp; }
+
     }
+ 
 }

@@ -795,6 +795,7 @@ namespace MechanicalDesign
         {
             depRangeLbl.Text = "Dep Range: " + perkForm.selectedVehicle.bpTotal;
         }
+
     }
 
 }

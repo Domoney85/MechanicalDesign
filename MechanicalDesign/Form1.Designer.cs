@@ -47,6 +47,8 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openVehicleViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleWeaponsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,7 +167,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.updateToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(745, 28);
@@ -219,15 +222,31 @@
             // printVehicleToolStripMenuItem
             // 
             this.printVehicleToolStripMenuItem.Name = "printVehicleToolStripMenuItem";
-            this.printVehicleToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.printVehicleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.printVehicleToolStripMenuItem.Text = "Print Vehicle View";
             this.printVehicleToolStripMenuItem.Click += new System.EventHandler(this.printVehicleToolStripMenuItem_Click);
             // 
             // openVehicleViewToolStripMenuItem
             // 
             this.openVehicleViewToolStripMenuItem.Name = "openVehicleViewToolStripMenuItem";
-            this.openVehicleViewToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.openVehicleViewToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.openVehicleViewToolStripMenuItem.Text = "Open Vehicle View";
+            this.openVehicleViewToolStripMenuItem.Click += new System.EventHandler(this.openVehicleViewToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vehicleWeaponsToolStripMenuItem});
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.updateToolStripMenuItem.Text = "Update";
+            // 
+            // vehicleWeaponsToolStripMenuItem
+            // 
+            this.vehicleWeaponsToolStripMenuItem.Name = "vehicleWeaponsToolStripMenuItem";
+            this.vehicleWeaponsToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.vehicleWeaponsToolStripMenuItem.Text = "Vehicle Weapons";
+            this.vehicleWeaponsToolStripMenuItem.Click += new System.EventHandler(this.vehicleWeaponsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -278,6 +297,8 @@
         private System.Windows.Forms.ToolStripMenuItem printVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openVehicleViewToolStripMenuItem;
         public System.Windows.Forms.TextBox vehName;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehicleWeaponsToolStripMenuItem;
     }
 }
 

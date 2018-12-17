@@ -2111,10 +2111,10 @@ namespace MechanicalDesign
             // 
             this.eSystemTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.eSystemTable.ColumnCount = 4;
-            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.57534F));
-            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.42466F));
+            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.0989F));
+            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.9011F));
             this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.eSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.eSystemTable.Location = new System.Drawing.Point(497, 25);
             this.eSystemTable.Margin = new System.Windows.Forms.Padding(4);
             this.eSystemTable.Name = "eSystemTable";
@@ -2128,10 +2128,10 @@ namespace MechanicalDesign
             // 
             this.mSystemTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.mSystemTable.ColumnCount = 4;
-            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.57534F));
-            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.42466F));
+            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.64835F));
+            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.35165F));
             this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.mSystemTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.mSystemTable.Location = new System.Drawing.Point(497, 148);
             this.mSystemTable.Margin = new System.Windows.Forms.Padding(4);
             this.mSystemTable.Name = "mSystemTable";
@@ -2534,7 +2534,7 @@ namespace MechanicalDesign
             this.panel12.Location = new System.Drawing.Point(37, 538);
             this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(846, 28);
+            this.panel12.Size = new System.Drawing.Size(856, 28);
             this.panel12.TabIndex = 24;
             // 
             // vehPerkLbl
@@ -2555,7 +2555,7 @@ namespace MechanicalDesign
             this.flowLayoutPanel1.Location = new System.Drawing.Point(37, 292);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(853, 158);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(856, 158);
             this.flowLayoutPanel1.TabIndex = 25;
             // 
             // hardPointTbl
@@ -2564,15 +2564,14 @@ namespace MechanicalDesign
             this.hardPointTbl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.hardPointTbl.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.hardPointTbl.ColumnCount = 8;
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 188F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
-            this.hardPointTbl.Controls.Add(this.label10, 0, 0);
+            this.hardPointTbl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 208F));
             this.hardPointTbl.Controls.Add(this.label25, 7, 0);
             this.hardPointTbl.Controls.Add(this.label24, 6, 0);
             this.hardPointTbl.Controls.Add(this.label23, 5, 0);
@@ -2580,12 +2579,13 @@ namespace MechanicalDesign
             this.hardPointTbl.Controls.Add(this.label21, 3, 0);
             this.hardPointTbl.Controls.Add(this.label20, 2, 0);
             this.hardPointTbl.Controls.Add(this.label19, 1, 0);
+            this.hardPointTbl.Controls.Add(this.label10, 0, 0);
             this.hardPointTbl.Location = new System.Drawing.Point(4, 4);
             this.hardPointTbl.Margin = new System.Windows.Forms.Padding(4);
             this.hardPointTbl.Name = "hardPointTbl";
             this.hardPointTbl.RowCount = 1;
-            this.hardPointTbl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.hardPointTbl.Size = new System.Drawing.Size(837, 33);
+            this.hardPointTbl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.hardPointTbl.Size = new System.Drawing.Size(839, 35);
             this.hardPointTbl.TabIndex = 0;
             // 
             // label10
@@ -2595,7 +2595,7 @@ namespace MechanicalDesign
             this.label10.Location = new System.Drawing.Point(1, 1);
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 31);
+            this.label10.Size = new System.Drawing.Size(73, 33);
             this.label10.TabIndex = 8;
             this.label10.Text = "HP Type";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2607,7 +2607,7 @@ namespace MechanicalDesign
             this.label25.Location = new System.Drawing.Point(630, 1);
             this.label25.Margin = new System.Windows.Forms.Padding(0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(206, 31);
+            this.label25.Size = new System.Drawing.Size(208, 33);
             this.label25.TabIndex = 7;
             this.label25.Text = "Special";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2619,7 +2619,7 @@ namespace MechanicalDesign
             this.label24.Location = new System.Drawing.Point(542, 1);
             this.label24.Margin = new System.Windows.Forms.Padding(0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(87, 31);
+            this.label24.Size = new System.Drawing.Size(87, 33);
             this.label24.TabIndex = 6;
             this.label24.Text = "Range";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2628,10 +2628,10 @@ namespace MechanicalDesign
             // 
             this.label23.AutoSize = true;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label23.Location = new System.Drawing.Point(454, 1);
+            this.label23.Location = new System.Drawing.Point(445, 1);
             this.label23.Margin = new System.Windows.Forms.Padding(0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(87, 31);
+            this.label23.Size = new System.Drawing.Size(96, 33);
             this.label23.TabIndex = 5;
             this.label23.Text = "Ammo";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2640,10 +2640,10 @@ namespace MechanicalDesign
             // 
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.Location = new System.Drawing.Point(393, 1);
+            this.label22.Location = new System.Drawing.Point(391, 1);
             this.label22.Margin = new System.Windows.Forms.Padding(0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(60, 31);
+            this.label22.Size = new System.Drawing.Size(53, 33);
             this.label22.TabIndex = 4;
             this.label22.Text = "ROF";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2652,10 +2652,10 @@ namespace MechanicalDesign
             // 
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label21.Location = new System.Drawing.Point(332, 1);
+            this.label21.Location = new System.Drawing.Point(339, 1);
             this.label21.Margin = new System.Windows.Forms.Padding(0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(60, 31);
+            this.label21.Size = new System.Drawing.Size(51, 33);
             this.label21.TabIndex = 3;
             this.label21.Text = "DMG";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2664,10 +2664,10 @@ namespace MechanicalDesign
             // 
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(271, 1);
+            this.label20.Location = new System.Drawing.Point(294, 1);
             this.label20.Margin = new System.Windows.Forms.Padding(0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(60, 31);
+            this.label20.Size = new System.Drawing.Size(44, 33);
             this.label20.TabIndex = 2;
             this.label20.Text = "Acc";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2676,10 +2676,10 @@ namespace MechanicalDesign
             // 
             this.label19.AutoSize = true;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(82, 1);
+            this.label19.Location = new System.Drawing.Point(75, 1);
             this.label19.Margin = new System.Windows.Forms.Padding(0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(188, 31);
+            this.label19.Size = new System.Drawing.Size(218, 33);
             this.label19.TabIndex = 1;
             this.label19.Text = "Weapon Name";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2691,7 +2691,7 @@ namespace MechanicalDesign
             this.panel17.Location = new System.Drawing.Point(37, 574);
             this.panel17.Margin = new System.Windows.Forms.Padding(4);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(846, 28);
+            this.panel17.Size = new System.Drawing.Size(856, 28);
             this.panel17.TabIndex = 25;
             // 
             // vehFlawLbl
@@ -2711,7 +2711,7 @@ namespace MechanicalDesign
             this.sectionCompLayout.Location = new System.Drawing.Point(37, 457);
             this.sectionCompLayout.Margin = new System.Windows.Forms.Padding(4);
             this.sectionCompLayout.Name = "sectionCompLayout";
-            this.sectionCompLayout.Size = new System.Drawing.Size(853, 74);
+            this.sectionCompLayout.Size = new System.Drawing.Size(856, 74);
             this.sectionCompLayout.TabIndex = 26;
             // 
             // SectionProperties

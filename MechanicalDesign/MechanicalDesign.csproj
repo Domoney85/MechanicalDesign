@@ -71,6 +71,7 @@
     <Compile Include="MiscTools.cs" />
     <Compile Include="MoveType.cs" />
     <Compile Include="PerkForm.cs" />
+    <Compile Include="VehWeapon.cs" />
     <Compile Include="SectionProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Javascript.js" />
+    <Content Include="Testing.xml" />
+    <Content Include="VehicleView.html" />
+    <Content Include="VehTable.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

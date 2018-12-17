@@ -297,7 +297,6 @@ namespace MechanicalDesign
             public int shieldAdjust;
             public int totalShields;
             public double shieldPP;
-
             public int sectionCrCost;
             public int shieldCrCost;
             public int pcCost;
@@ -407,7 +406,13 @@ namespace MechanicalDesign
             }
             public int SectionCr()
             {
-                sectionCrCost = (int)(secChassis.chasCost+shieldCrCost+pcCost);
+                int weaponCost=0;
+                foreach(HardPoint hp in hpList)
+                {
+                    if(hp.VehicleWeapon != null)
+                    weaponCost += hp.VehicleWeapon.COST;  
+                }
+                sectionCrCost = (int)(secChassis.chasCost+shieldCrCost+pcCost+weaponCost);
                 return sectionCrCost;
             }
             public int GetShieldTotal()

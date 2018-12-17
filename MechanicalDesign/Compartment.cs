@@ -70,67 +70,67 @@ namespace MechanicalDesign
 
         }
     }
-    class Cockpit : Compartment
+    public class Cockpit : Compartment
     {
         public Cockpit(){name = "Cockpit";space = 2;ppCost = 2;}
     }
-    class FCockpit : Compartment
+    public class FCockpit : Compartment
     {
         public FCockpit() { name = "(Free)Cockpit"; space = 2; ppCost = 0; count = 1; }
     }
-    class FDriver : Compartment
+    public class FDriver : Compartment
     {
         public FDriver() { name = "(Free)Driver Seat"; space = 2; ppCost = 0; count = 1; }
     }
-    class Accommodations : Compartment
+    public class Accommodations : Compartment
     {
         public Accommodations(){name = "Accomodations";space = 6;ppCost = 1;}
     }
-    class SoldierAccommodations : Compartment
+    public class SoldierAccommodations : Compartment
     {
         public SoldierAccommodations(){name = "Soldier Accommodations"; space = 6; ppCost = 1;}
     }
-    class LuxAccommodations : Compartment
+    public class LuxAccommodations : Compartment
     {
         public LuxAccommodations(){name = "Luxury Accommodations"; space = 12; ppCost = 2;}
     }
-    class DiningFacility : Compartment
+    public class DiningFacility : Compartment
     {
         public DiningFacility(){ name = "Dining Facility"; space = 12; ppCost = 2;}
     }
-    class SocialLounge : Compartment
+    public class SocialLounge : Compartment
     {
         public SocialLounge(){name = "Social Lounge"; space = 16; ppCost = 3;}
     }
-    class GrandSocialLounge: Compartment
+    public class GrandSocialLounge: Compartment
     {
         public GrandSocialLounge(){name = "Social Lounge w/ Wetbar"; space = 20; ppCost = 5;}
     }
-    class ControlBridge : Compartment
+    public class ControlBridge : Compartment
     {
         public ControlBridge(){name = "Control Bridge"; space = 10;  ppCost = 4;}
     }
-    class FControlBridge : Compartment
+    public class FControlBridge : Compartment
     {
         public FControlBridge() { name = "(Free)Control Bridge"; space = 10; ppCost = 0; count = 1; }
     }
-    class EWarControls : Compartment
+    public class EWarControls : Compartment
     {
         public EWarControls() { name = "E-Warfare Controls"; space = 2; ppCost = 2; }
     }
-    class ExposedGunHatch : Compartment
+    public class ExposedGunHatch : Compartment
     {
         public ExposedGunHatch() { name = "Exposed Gun Hatch"; space = 3; ppCost = 3; }
     }
-    class GunHatch : Compartment
+    public class GunHatch : Compartment
     {
         public GunHatch() { name = "Gun Hatch"; space = 4; ppCost = 5; }
     }
-    class HPGunHatch : Compartment
+    public class HPGunHatch : Compartment
     {
         public HPGunHatch() { name = "Hardpoint Gun Hatch"; space = 4; ppCost = 2; }
     }
-    class PilotControl : Compartment
+    public class PilotControl : Compartment
     {
         public PilotControl() { name = "Pilots Controls"; space = 1; ppCost = 2; }
     }
