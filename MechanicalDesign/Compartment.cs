@@ -134,6 +134,38 @@ namespace MechanicalDesign
     {
         public PilotControl() { name = "Pilots Controls"; space = 1; ppCost = 2; }
     }
+    public class Laboratory : Compartment
+    {
+        public Laboratory() { name = "Laboratory"; space = 16; ppCost = 10; }
+    }
+    public class Medical : Compartment
+    {
+        public Medical() { name = "Medical Bay"; space = 12; ppCost = 4; }
+    }
+    public class EMedical : Compartment
+    {
+        public EMedical() { name = "Enh. Medical Bay"; space = 18; ppCost = 12; }
+    }
+    public class Engineering : Compartment
+    {
+        public Engineering() { name = "Engineering Bay"; space = 15; ppCost = 15; }
+    }
+    public class ExternalClamp : Compartment
+    {
+        public ExternalClamp() { name = "External Clamp"; space = 2; ppCost = 0; }
+    }
+    public class ExternalHatch : Compartment
+    {
+        public ExternalHatch() { name = "External Con Hatch"; space = 2; ppCost = 2; }
+    }
+    public class CrewSeat : Compartment
+    {
+        public CrewSeat() { name = "Crew Transport Seat"; space = 1; ppCost = 0; }
+    }
+    public class AirLock : Compartment
+    {
+        public AirLock() { name = "Air Lock"; space = 1; ppCost = 1; }
+    }
 
     public class CompartmentList
     {
@@ -155,7 +187,16 @@ namespace MechanicalDesign
                 new ExposedGunHatch(),
                 new GunHatch(),
                 new HPGunHatch(),
-                new PilotControl()
+                new PilotControl(),
+                new Laboratory(),
+                new Medical(),
+                new EMedical(),
+                new Engineering(),
+                new ExternalClamp(),
+                new ExternalHatch(),
+                new CrewSeat(),
+                new AirLock()
+            
             };
             
         }
