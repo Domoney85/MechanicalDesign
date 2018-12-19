@@ -19,7 +19,7 @@ namespace MechanicalDesign
         public bool holdHPform = false;
         string mountType;
         public string hpString;
-        int inCount;
+        rowCreation nrow;
         Main mainForm;
         SectionProperties sectionForm;
         GroupBox hpGrpBox;
@@ -78,8 +78,12 @@ namespace MechanicalDesign
             sectionForm.spentPPLbl.Text = mainForm.selectedSection.SectionPPSpent().ToString();
             sectionForm.totalPPLbl.Text = mainForm.selectedVehicle.GetTotalUsedPP().ToString();
             hpString = weaponAbrev;
+            //PopHPTbl();
+            //sectionForm.upDateHPslots();
+            
+            nrow = new rowCreation(this, mainForm.selectedSection.hpList.Count);
+            //mainForm.selectedSection.sectionLP = sectionForm.refTab ;
             PopHPTbl();
-            sectionForm.upDateHPslots();
 
 
         }
@@ -127,9 +131,11 @@ namespace MechanicalDesign
                 mainForm.selectedSection.SetHPperkCost();
                 if (!holdHPform && mountType != null) hpString = mountType[0] + " " + weaponAbrev;
                 else hpString = weaponAbrev;
+                nrow.setHpString();
                 sectionForm.spentPPLbl.Text = mainForm.selectedSection.SectionPPSpent().ToString();
                 sectionForm.totalPPLbl.Text = mainForm.selectedVehicle.GetTotalUsedPP().ToString();
-                PopHPTbl();
+                
+                // PopHPTbl();
             };
             Button removeHPBtn = new Button()
             {
@@ -161,59 +167,24 @@ namespace MechanicalDesign
             mainForm.selectedSection.SetHPperkCost();
             sectionForm.spentPPLbl.Text = mainForm.selectedSection.SectionPPSpent().ToString();
             sectionForm.totalPPLbl.Text = mainForm.selectedVehicle.GetTotalUsedPP().ToString();
-            //MiscTools.remove_row(sectionForm.hardPointTbl, index+1);
+            MiscTools.remove_row(mainForm.selectedSection.sectionLP, index+1);
             sectionForm.upDateHPslots();
-            PopHPTbl();
+            mainForm.selectedSection.sectionLP.Height = mainForm.selectedSection.sectionLP.Height - 25;
+            //PopHPTbl();
+
         }
         public void PopHPTbl()
         {
-            sectionForm.hardPointTbl.RowCount = 1;
-            RowStyle temp = sectionForm.hardPointTbl.RowStyles[0];
-            sectionForm.hardPointTbl.Controls.Clear();
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "HP Type", Dock = DockStyle.Fill, Font = new Font("Arial",7, FontStyle.Bold) },0,0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "     Weapon Name    ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 1, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "ACC", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 2, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "DMG", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 3, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "ROF", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 4, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "AMMO", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 5, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = " RANGE ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 6, 0);
-            sectionForm.hardPointTbl.Controls.Add(new Label() { Text = "    Special    ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 7, 0);
-            int count = 1;
-            List <HardPoint> mList= mainForm.selectedSection.hpList;
-            foreach(HardPoint x in mList)
-            {
-                x.inCount = count;
-                //  hpString="";
-               // if (!x.holdHPform && x.mountType != null) hpString = x.mountType[0] + " "+x.weaponAbrev;
-               // else x.hpString =x.weaponAbrev;
-                ///////////Add new Object here
-                rowCreation row = new rowCreation(x, count);
+            
+            sectionForm.hpMainLayout.Controls.Clear();
+            sectionForm.hpMainLayout.Controls.Add(mainForm.selectedSection.sectionLP);
+            //sectionForm.defTable = mainForm.selectedSection.sectionLP;
 
-
-                //if ((VehWeapon)weaponSelect.SelectedItem != x.VehicleWeapon)
-                //forcing for now                
-                count++;
-                
-               
-            }
         }
-        public void updateHP()
+        public static void updateHP()
         {
-            sectionForm.hardPointLayout.Controls.Clear();
-            foreach (HardPoint x in mainForm.selectedSection.hpList)
-            {
-                x.HPform();
-                if (!x.holdHPform) x.hpcomboBox.Enabled = false;
-            }
-                PopHPTbl();
-        }
-        public static void ClearTable(SectionProperties s)
-        {
-            s.hardPointLayout.Controls.Clear();
-            for(int i = 0; i<= s.hardPointTbl.RowCount; i++)
-            {
-                MiscTools.remove_row(s.hardPointTbl, 1);
-            }
+            Main.mainForm.SectionForm.hpMainLayout.Controls.Clear();
+            Main.mainForm.SectionForm.hpMainLayout.Controls.Add(Main.mainForm.selectedSection.sectionLP);
         }
         
        
@@ -226,6 +197,7 @@ namespace MechanicalDesign
         ComboBox weaponSelect;
         HardPoint inHp;
         Label[] controls = new Label[6];
+        Label hpTypLbl;
         public int col;
         public rowCreation(HardPoint ih,int c)
         {
@@ -233,7 +205,7 @@ namespace MechanicalDesign
             sectionForm = mainForm.SectionForm;
             col = c;
             inHp = ih;
-            Label hpTypLbl = new Label()
+            hpTypLbl = new Label()
             {
                 Dock = DockStyle.Fill,
                 Text = inHp.hpString
@@ -259,13 +231,14 @@ namespace MechanicalDesign
             else
                 weaponSelect.SelectedItem = weaponSelect.Items[0];
             weaponSelect.SelectedIndexChanged += new EventHandler(VehWeapon_Selection);
-            sectionForm.hardPointTbl.RowCount++;
-            sectionForm.hardPointTbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 25f));
-            sectionForm.hardPointTbl.Controls.Add(hpTypLbl, 0, col);
+            mainForm.selectedSection.sectionLP.RowCount++;
+            mainForm.selectedSection.sectionLP.Height = mainForm.selectedSection.sectionLP.Height + 25;
+            mainForm.selectedSection.sectionLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 25f));
+            mainForm.selectedSection.sectionLP.Controls.Add(hpTypLbl, 0, col);
             if (inHp.holdHPform)
             {
                 inHp.VehicleWeapon = new VehWeapon(inHp.weaponString, "", "", "", "", "", "", "", "", "", 0, 0);
-                sectionForm.hardPointTbl.Controls.Add(new Label()
+                mainForm.selectedSection.sectionLP.Controls.Add(new Label()
                 {
                     Dock = DockStyle.Fill,
                     Text = inHp.weaponString
@@ -273,7 +246,7 @@ namespace MechanicalDesign
             }
             else
             {
-                sectionForm.hardPointTbl.Controls.Add(weaponSelect, 1, col);
+                mainForm.selectedSection.sectionLP.Controls.Add(weaponSelect, 1, col);
             }
             for(int i = 0; i < controls.Length;i++)
             {
@@ -285,12 +258,12 @@ namespace MechanicalDesign
                 };
             }
 
-            sectionForm.hardPointTbl.Controls.Add(controls[0], 2, col);
-            sectionForm.hardPointTbl.Controls.Add(controls[1], 3, col);
-            sectionForm.hardPointTbl.Controls.Add(controls[2], 4, col);
-            sectionForm.hardPointTbl.Controls.Add(controls[3], 5, col);
-            sectionForm.hardPointTbl.Controls.Add(controls[4], 6, col);
-            sectionForm.hardPointTbl.Controls.Add(controls[5], 7, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[0], 2, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[1], 3, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[2], 4, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[3], 5, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[4], 6, col);
+            mainForm.selectedSection.sectionLP.Controls.Add(controls[5], 7, col);
 
             if (inHp.VehicleWeapon != null)
             {
@@ -304,17 +277,27 @@ namespace MechanicalDesign
             }
             void VehWeapon_Selection(object sender, EventArgs e)
             {
-
-                inHp.VehicleWeapon = (weaponSelect.SelectedItem as dynamic).Value;
+                if ((weaponSelect.SelectedItem as dynamic).Value == inHp.VehicleWeapon)
+                    return;
+                else
+                {
+                    inHp.VehicleWeapon = (weaponSelect.SelectedItem as dynamic).Value;
                     sectionForm.costLbl.Text = "Cost: " + mainForm.selectedVehicle.GetTotalCost().ToString("N") + " Cr";
                     controls[0].Text = inHp.VehicleWeapon.ACC;
                     controls[1].Text = inHp.VehicleWeapon.DMG;
                     controls[2].Text = inHp.VehicleWeapon.ROF;
-                    controls[3].Text = inHp.VehicleWeapon.AMMO+ " / " + inHp.VehicleWeapon.AMMO_TYPE;
+                    controls[3].Text = inHp.VehicleWeapon.AMMO + " / " + inHp.VehicleWeapon.AMMO_TYPE;
                     controls[4].Text = inHp.VehicleWeapon.Range;
                     controls[5].Text = inHp.VehicleWeapon.Special;
-                    //inHp.PopHPTbl();
+                    inHp.PopHPTbl();
+                    
+                }
             }
+           
+        }
+        public void setHpString()
+        {
+            hpTypLbl.Text = inHp.hpString;
         }
     }
 }

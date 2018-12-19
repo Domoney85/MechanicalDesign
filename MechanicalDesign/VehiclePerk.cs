@@ -33,7 +33,7 @@ namespace MechanicalDesign
             s.perkList.Add(new VehiclePerk("Accel Protect +2", 5));//8
             s.perkList.Add(new VehiclePerk("Accel Protect +3", 10));//9
             s.perkList.Add(new VehiclePerk("Accel Protect +4", 15));//10
-            s.perkList.Add(new VehiclePerk("Accel Protect +4", 20));//11
+            s.perkList.Add(new VehiclePerk("Accel Protect +5", 20));//11
         }
     }
     public class VehicleFlaw

@@ -44,13 +44,15 @@ namespace MechanicalDesign
             tCHS = v.tCHS;
             VehiclePerk.PopPerkList(v);
             VehicleFlaw.PopFlawList(v);
-            if (s.hpList.Count!= 0) s.hpList[0].updateHP(); else HardPoint.ClearTable(sectionForm);
+            //
             sectionForm.upDateHPslots();
             sectionForm.TotPerkPointLbl.Text = "Total Perk Points: "+v.totalPP.ToString();
             sectionForm.TempDescLbl.Text = tempLblBuilder();
             sectionForm.spentPPLbl.Text = selectedSection.SectionPPSpent().ToString();
             sectionForm.totalPPLbl.Text = selectedVehicle.GetTotalUsedPP().ToString();
             sectionForm.pwrCrLbl.Text = "Power Core: "+selectedSection.secCore.corSize.ToString();
+
+            HardPoint.updateHP();
 
             VehicleCheck();
             SetArmor();

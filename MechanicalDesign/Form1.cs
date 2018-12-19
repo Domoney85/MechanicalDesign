@@ -51,7 +51,7 @@ namespace MechanicalDesign
             InitializeComponent();
             mainForm = this;
             try { xmlVehWeapons(); }
-            catch (Exception error)
+            catch (Exception)
             {
                 connectionString = "mongodb+srv://Cshmnymc:Killer123$@silcodb-0xgif.mongodb.net/test?retryWrites=true";
                 mongoClient = new MongoClient(connectionString);
@@ -287,6 +287,14 @@ namespace MechanicalDesign
                         mechCPX.Text = "Mech CPX: " + mechCPXTest().ToString();
                         baseSpeed.Text = "Base Speed: " + baseSpeedTest().ToString();
                         totalCost.Text = "Base Cost: " + (currentSection.secChassis.chasCost + currentSection.secCore.corCost).ToString("n0") + " Cr";
+                        ComboBox thisBox = (ComboBox)o;
+                        foreach (Control x in thisBox.Parent.Controls)
+                        {
+                            if (x.Text == "Build") ;
+                            {
+                                x.Enabled = true;
+                            }
+                        }
                     }
                 };
                 /////////SECTION GROUP BOX////////////////////
@@ -361,6 +369,14 @@ namespace MechanicalDesign
                         mechCPX.Text = "Mech CPX: " + mechCPXTest().ToString();
                         baseSpeed.Text = "Base Speed: " + baseSpeedTest().ToString();
                         totalCost.Text = "Base Cost: " + (currentSection.secChassis.chasCost + currentSection.secCore.corCost).ToString("n0") + " Cr";
+                        ComboBox thisBox = (ComboBox)o;
+                        foreach(Control x in thisBox.Parent.Controls)
+                        {
+                            if (x.Text == "Build");
+                            {
+                                x.Enabled = true;
+                            }
+                        }
                     }
                 };
 
@@ -369,7 +385,8 @@ namespace MechanicalDesign
                 Button buildSectionButton = new Button
                 {
                     Location = new Point(6, 94),
-                    Text = "Build"
+                    Text = "Build",
+                    Enabled = false
                 };
                 buildSectionButton.MouseClick += (o, i) =>
                 {
@@ -383,26 +400,38 @@ namespace MechanicalDesign
                        0,
                        0);
                     if (int.TryParse(input, out skillResult))
-
-                    //skillResult = int.Parse(input);
-                    /////////////////End Input Box//////////////////TEMP
-                    try 
                     {
                         SectionForm.Show();
+                        selectedSection = currentSection;
+                        selectedSection.CalcSectionPP(skillResult);
+                        selectedSection.isBuilt = true;
+                        selectedVehicle.SetPilotCPX(selectedSection.secCore.corCPX);
+                        selectedVehicle.SetMechCPX((int)mechCPXTest());
+                        SectionForm.testLabelName.Text = selectedSection.sectionName;
+                        perkForm.UpdateForm(selectedVehicle, selectedSection);
+                        
+                        //skillResult = int.Parse(input);
+                        /////////////////End Input Box//////////////////TEMP
+                        if (selectedVehicle.tCHS >= selectedVehicle.sizeMin)   
+                        {
+                            try
+                            {
+                                SectionForm.Show();
+                            }
+                            catch
+                            {
+                                throw;
+                            }
+                        }
+                        else
+                        {
+                            SectionForm.Hide();
+                        }
                     }
-                    catch 
-                    {
-                        throw;
-                    }
-                    selectedSection = currentSection;
-                    selectedSection.CalcSectionPP(skillResult);
-                    selectedSection.isBuilt = true;
-                    selectedVehicle.SetPilotCPX(selectedSection.secCore.corCPX);
-                    selectedVehicle.SetMechCPX((int)mechCPXTest());
-                    SectionForm.testLabelName.Text = selectedSection.sectionName;
+                    
                     
 
-                    perkForm.UpdateForm(selectedVehicle, selectedSection);
+                   
                     foreach (GroupBox n in creatorLayout.Controls)
                     {
                         if (n.Name == selectedSection.sectionName)

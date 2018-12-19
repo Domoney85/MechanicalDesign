@@ -16,6 +16,7 @@ namespace MechanicalDesign
         public PerkForm perkForm;
         public SectionProperties()
         {
+            
             InitializeComponent();
             ecmChk.CheckedChanged += new EventHandler(ecmButton_CheckedChanged);
             eccmChk.CheckedChanged += new EventHandler(eccmButton_CheckedChanged);

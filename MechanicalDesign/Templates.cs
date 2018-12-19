@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+
+
 
 namespace MechanicalDesign
 {
@@ -111,6 +114,8 @@ namespace MechanicalDesign
         public bool isCapital = false;
 
         public bool isBipedal = false;
+        
+
 
         public void PopSections()
         {
@@ -344,14 +349,44 @@ namespace MechanicalDesign
             public double sSystemCost;
             public double fireCcost;
 
-
             public bool isBuilt;
+            /// <summary>
+            /// Vehicle Table Storage (Remove when migrating Code to other projects)
+            /// </summary>
+            public TableLayoutPanel sectionLP = new TableLayoutPanel()
+            {
+                Size = new Size(710, 50)
+            };
+
 
             public VehicleSection(String n, Vehicle v)
             {
                 parentVeh = v;
                 sectionName = n;
+                //TableLayoutPanel x = sectionLP;
+                //MiscTools.BuildHpHeader(sectionLP);
+                sectionLP.ColumnStyles.Clear();
+                sectionLP.ColumnCount = 8;
+                sectionLP.RowCount = 1;
+                for (int i = 0; i < 8; i++)
+                {
+                    sectionLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, Main.mainForm.SectionForm.hardPointTbl.ColumnStyles[i].Width));
+                    
                 
+                }
+                
+                sectionLP.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                sectionLP.Controls.Add(new Label() { Text = "HPTYPE", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 0, 0);
+                sectionLP.Controls.Add(new Label() { Text = "     Weapon Name    ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 1, 0);
+                sectionLP.Controls.Add(new Label() { Text = "ACC", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 2, 0);
+                sectionLP.Controls.Add(new Label() { Text = "DMG", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 3, 0);
+                sectionLP.Controls.Add(new Label() { Text = "ROF", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 4, 0);
+                sectionLP.Controls.Add(new Label() { Text = "AMMO", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 5, 0);
+                sectionLP.Controls.Add(new Label() { Text = " RANGE ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 6, 0);
+                sectionLP.Controls.Add(new Label() { Text = "    Special    ", Dock = DockStyle.Fill, Font = new Font("Arial", 7, FontStyle.Bold) }, 7, 0);
+
+
+
             }
             public void PopSecCompList()
             {
