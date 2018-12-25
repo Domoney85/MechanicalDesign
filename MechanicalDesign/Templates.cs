@@ -435,6 +435,10 @@ namespace MechanicalDesign
                 int totalLs=0;
                 if (parentVeh.isSpace) totalLs += (int)secCore.corSize;
                 totalLs += lsCount;
+                foreach(Compartment s in compList)
+                {
+                    totalLs += (s.count * s.ls);
+                }
                 if (totalLs > 0) lsString = "Life Support BP("+totalLs+")";
                 miscSystems[3] = lsString;
 

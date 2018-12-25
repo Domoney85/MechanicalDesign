@@ -59,8 +59,7 @@ namespace MechanicalDesign
             sectionForm.armAdjustTrk.Value = selectedSection.armorAdjust;
 
             SetBaseMobillity();
-            sectionForm.BuildElectricSystems();
-            sectionForm.BuildMiscSystems();
+            
 
             sectionForm.ElecPerkFormSet();
 
@@ -78,7 +77,9 @@ namespace MechanicalDesign
                 x.AddCompButton();
                 x.addButtons();
             }
-            
+            sectionForm.BuildElectricSystems();
+            sectionForm.BuildMiscSystems();
+
 
         }
         public String tempLblBuilder()

@@ -14,6 +14,7 @@ namespace MechanicalDesign
         internal int space;
         internal double ppCost;
         internal int count=0;
+        internal int ls=0;
 
 
         public void AddCompButton()
@@ -33,6 +34,8 @@ namespace MechanicalDesign
             count++;
             addButtons();
             PerkForm.sectionForm.CompartmentSpaceAdjust();
+            Main.mainForm.selectedVehicle.SetAllLs();
+            PerkForm.sectionForm.BuildMiscSystems();
         }
         private void addComp_Click(object sender, EventArgs e)
         {
@@ -43,6 +46,8 @@ namespace MechanicalDesign
             }
             addButtons();
             PerkForm.sectionForm.CompartmentSpaceAdjust();
+            Main.mainForm.selectedVehicle.SetAllLs();
+            PerkForm.sectionForm.BuildMiscSystems();
         }
         public void addButtons()
         {
@@ -166,7 +171,18 @@ namespace MechanicalDesign
     {
         public AirLock() { name = "Air Lock"; space = 1; ppCost = 1; }
     }
-
+    public class LSLarge : Compartment
+    {
+        public LSLarge() { name = "LS Large Cann"; space = 10; ppCost = 2;ls = 40; }
+    }
+    public class LSMed : Compartment
+    {
+        public LSMed() { name = "LS Med Cann"; space = 5; ppCost = 2; ls = 20; }
+    }
+    public class LSSmall : Compartment
+    {
+        public LSSmall() { name = "LS Small Cann"; space = 2; ppCost = 2; ls = 10; }
+    }
     public class CompartmentList
     {
         List<Compartment> CompList = new List<Compartment>();
@@ -195,7 +211,10 @@ namespace MechanicalDesign
                 new ExternalClamp(),
                 new ExternalHatch(),
                 new CrewSeat(),
-                new AirLock()
+                new AirLock(),
+                new LSLarge(),
+                new LSMed(),
+                new LSSmall()
             
             };
             

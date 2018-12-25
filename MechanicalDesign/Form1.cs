@@ -719,6 +719,8 @@ namespace MechanicalDesign
             public String sectionName;
             public double armor;
             public int shields;
+            public double crs;
+            public double chs;
             public List<SerEsystem> eSystems = new List<SerEsystem>();
             public List<SerMsystem> mSystems = new List<SerMsystem>();
             public List<SerProt> protPerks = new List<SerProt>();
@@ -732,6 +734,8 @@ namespace MechanicalDesign
                 armor = s.secChassis.baseArmor + s.armorAdjust;
                 shields = s.GetShieldTotal();
                 hPoints.AddRange(s.hpList);
+                crs = s.secCore.corSize;
+                chs = s.secChassis.chasSize;
                 
                 foreach(string x in s.electronicSystems)
                 {
